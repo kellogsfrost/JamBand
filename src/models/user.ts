@@ -3,7 +3,7 @@ import mongoose, {Schema} from 'mongoose'
 
 const userSchema = new Schema({
     spotifyId: {
-        type: Number,
+        type: Number || String,
         required: [true, 'You need to have a spotify account']
     }
 })
