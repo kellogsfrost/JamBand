@@ -10,7 +10,7 @@ export interface IUser {
   spotifyId: number;
 }
 
-export interface IRepo {
+export interface IPlaylist {
   name: string
 }
 
@@ -18,18 +18,18 @@ export interface IRepo {
 const App: React.FC = () => {
   // useState can be used as a generic 
   const [user, setUser] = useState<IUser>({} as IUser)
-  const [repos, setRepos] = useState<IRepo[]>([])
+  const [playlists, setPlaylist] = useState<IPlaylist[]>([])
 
   useEffect(() => {
     console.log('firing data fetch')
     if (Object.keys(user).length) {
-      axios.get(`/api/${user.spotifyId}/repos`)
+      axios.get(`/api/${user.spotifyId}/playlists`)
       .then((res) => {
-        setRepos(res.data)
+        setPlaylist(res.data)
       })
     }
   }, [user])
-
+  
   function handleLogin(e: React.MouseEvent): void {
     e.preventDefault()
     var message: Promise<IUser> = openNewAuthWindow('/auth/spotify')
@@ -39,17 +39,24 @@ const App: React.FC = () => {
       console.log(err)
     })
   }
-
+  
   var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p> {user.spotifyId}</p>
-
-
-
+  var playlistData = playlists.map((playlist, id) => {
+    return (
+        <p> {playlist.name}</p>
+    )
+  }) 
+  
+  
+  
   return (
     <div className="App">
       <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
       {userData}
+      {playlistData}
     </div>
   );
 }
 
 export default App;
+

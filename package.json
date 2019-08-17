@@ -20,7 +20,8 @@
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11",
     "passport-spotify": "^1.1.0",
-    "spotify": "^0.3.0"
+    "spotify": "^0.3.0",
+    "typescript": "^3.5.3"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
