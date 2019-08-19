@@ -17,4 +17,4 @@ playlistSchema.set('toObject', {
     }
 })
 
-export default mongoose.model('User', playlistSchema);
+export default mongoose.model('Playlist', playlistSchema);
