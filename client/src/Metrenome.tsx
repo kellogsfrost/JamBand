@@ -45,12 +45,12 @@ const Metronome: React.FC = () => {
             });
         } else {
             // Start a timer with the current BPM
-            timer = setInterval(playClick, (60 / state.bpm) * 1000);
+            timer = setInterval(playClick, (60 / Number(bpm) * 1000);
             useState({
                 count: 0,
                 playing: true
                 // Play a click "immediately" (auseState finishes)
-            }, playClick);
+            }, playClick;
         }
     }
     
