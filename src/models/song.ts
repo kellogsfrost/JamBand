@@ -1,10 +1,10 @@
 import mongoose, {Schema} from 'mongoose'
 
 const songSchema = new Schema({
-    songId: {
-        track: String,
+    song: {
         artist: String,
         tempo: Number,
+        songName: String,
     }
 })
 
@@ -12,7 +12,7 @@ songSchema.set('toObject', {
     transform: function(doc, ret, options) {
         let returnJson = {
             _id: ret._id,
-            songId: ret.song_title,
+            songName: ret.song_title,
             artist: ret.artist.name,
             tempo: ret.tempo
         }

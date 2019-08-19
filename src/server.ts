@@ -45,6 +45,9 @@ app.use('/songSave', songRouter);
 import apiRouter from './routes/api';
 app.use('/api', apiRouter);
 
+import bpmRouter from './routes/bpm';
+app.use('/bpm', bpmRouter);
+
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 })

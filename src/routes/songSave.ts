@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
  router.post('/', (req, res) => {
     console.log("Backend post route")
     Song.create({
-        track: String,
+        songName: String,
         artist: String,
         tempo: String,
     }, function (err, song) {
@@ -39,9 +39,9 @@ router.get('/', (req, res) => {
        req.params.sid,
        {
           $set: {
-            track: String,
+            songName: String,
             artist: String,
-            tempo: String,
+            tempo: Number,
           }
        },
        { new: true },
