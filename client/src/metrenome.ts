@@ -31,8 +31,8 @@
      }
  
      // Keep track of which beat we're on
-     useState(){(
-       count: (Number(setCount) + 1) % Number(setBpm)
+    function keepBeat(){(
+       setCount((count)+1  % (bpm))
  
      }
      } 
@@ -46,7 +46,7 @@
              });
          } else {
              // Start a timer with the current BPM
-             timer = setInterval(playClick, (60 / Number(bpm) * 1000);
+            timer = setInterval(playClick, (60 / Number(bpm) * 1000);
              useState({
                  count: 0,
                  playing: true
@@ -55,9 +55,9 @@
          }
      }
      
-     function handleBpmChange(e: React.MouseEvent):void {
+     function handleBpmChange(e: any) {
          e.preventDefault()
-         const bpm = event.target.value;
+         setBpm(e.target.value);
          
          if(playing) {
              // Stop the old timer and start a new one
@@ -94,10 +94,13 @@
            {playing ? 'Stop' : 'Start'}
          </button>
        </div>
-     );
- }
  
+
+    );
+    
+}
  
+
  
  
  

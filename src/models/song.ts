@@ -4,8 +4,7 @@ const songSchema = new Schema({
     songId: {
         track: String,
         artist: String,
-        tempo: String,
-        required: [true, 'Must have Track']
+        tempo: Number,
     }
 })
 

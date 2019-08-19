@@ -39,6 +39,9 @@ app.use(passport.session());
 import authRouter from './routes/auth';
 app.use('/auth', authRouter);
 
+import songRouter from './routes/songSave';
+app.use('/songSave', songRouter);
+
 import apiRouter from './routes/api';
 app.use('/api', apiRouter);
 
