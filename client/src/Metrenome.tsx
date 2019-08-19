@@ -4,54 +4,51 @@ import React, { useState } from 'react'
 import click1 from './click1.wav';
 import click2 from './click2.wav';
 
-class Metronome extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      playing: false,
-      count: 0,
-      bpm: 100,
-      beatsPerMeasure: 4
+const Metronome: React.FC = () => {
+    
+      const [bpm, setBpm] = useState([]);
+      const [playing, setPlaying] = useState<boolean | null>(null);
+      const [count, setCount] = useState(4)
     };
 
     // Create Audio objects with the files Webpack loaded,
     // and we'll play them later.
-    this.click1 = new Audio(click1);
-    this.click2 = new Audio(click2);
-  }
+    const click1 = new Audio(click1);
+    const click2 = new Audio(click2);
+  
 
   playClick = () => {
-    const { count, beatsPerMeasure } = this.state;
+    const { count, bpm } = useState();
 
     // The first beat will have a different sound than the others
-    if(count % beatsPerMeasure === 0) {
-      this.click2.play();
+    if(count % bpm === 0) {
+      click2.play();
     } else {
-      this.click1.play();
+      click1.play();
     }
 
     // Keep track of which beat we're on
-    this.setState(state => ({
-      count: (state.count + 1) % state.beatsPerMeasure
+    useState(state => ({
+      count: (state.count + 1) % state.bpm
     }));
   }
 
   startStop = () => {
-    if(this.state.playing) {
+    if(useState.playing) {
       // Stop the timer
-      clearInterval(this.timer);
-      this.setState({
+      clearInterval(timer);
+      useState({
         playing: false
       });
     } else {
       // Start a timer with the current BPM
-      this.timer = setInterval(this.playClick, (60 / this.state.bpm) * 1000);
-      this.setState({
+      timer = setInterval(playClick, (60 / state.bpm) * 1000);
+      useState({
         count: 0,
         playing: true
-        // Play a click "immediately" (after setState finishes)
-      }, this.playClick);
+        // Play a click "immediately" (auseState finishes)
+      }, playClick);
     }
   }
 
@@ -64,13 +61,13 @@ class Metronome extends Component {
       this.timer = setInterval(this.playClick, (60 / bpm) * 1000);
 
       // Set the new BPM, and reset the beat counter
-      this.setState({
+      useState({
         count: 0,
         bpm
       });
     } else {
       // Otherwise just update the BPM
-      this.setState({ bpm });
+      useState({ bpm });
     }
 
   }
