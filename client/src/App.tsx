@@ -4,6 +4,7 @@ import openNewAuthWindow from './openWindow';
 import axios from 'axios';
 import { number } from 'prop-types';
 import SongList from './songList';
+import FavoriteList from './favoriteList';
 
 
 
@@ -82,6 +83,7 @@ const App: React.FC = () => {
       {userData}
       {/* {playlistData} */}
       <SongList/>
+      <FavoriteList/>
     </div>
   );
 }

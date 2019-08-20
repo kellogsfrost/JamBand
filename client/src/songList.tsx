@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios';
+import { response } from 'express';
 
 
 
@@ -45,6 +46,11 @@ export interface ISong {
         axios.post(`/song`, {
             song_title: song.song_title,
             tempo: song.tempo
+        }).then( () => {
+            axios.get(`/song`).then( (response) =>{
+                setFavorite(response.data)
+                console.log('saved')
+            })
         })
     }
     
@@ -53,7 +59,7 @@ export interface ISong {
         return(
          <div>
           <p>Song Title: {song.song_title} Tempo: {song.tempo}</p>
-          <button className="save" onClick={saveSong}>Save Song</button>
+          <button className="save" onClick={()=> saveSong(song)}>Save Song</button>
           </div>
       )})
      
