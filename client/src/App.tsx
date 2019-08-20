@@ -41,11 +41,9 @@ export interface IFavorite{
 // A functional component must be of type React.FC
 const App: React.FC = () => {
   // useState can be used as a generic 
-  // const [bpm, setBpm] = useState<number>(130)
   const [user, setUser] = useState<IUser>({} as IUser)
   const [playlists, setPlaylist] = useState<IPlaylist[]>([])
   const [favorites, setFavorite] = useState<IFavorite[]>([])
-  // const [songs, setSong] = useState<ISong[]>([])
  
   useEffect(() => {
     console.log('firing data fetch')
@@ -57,16 +55,7 @@ const App: React.FC = () => {
     }
   }, [user])
 
-  // useEffect(() => {
-  //   console.log('firing data fetch')
-  //     axios.get(`/bpm/song/${bpm}`)
-  //     .then((res) => {
-  //       console.log('hit this part')
-  //       console.log(res.data)
-  //       setSong(res.data)
-  //     })
-  // }, [bpm])
-
+  
   
   function handleLogin(e: React.MouseEvent): void {
     e.preventDefault()
@@ -84,12 +73,7 @@ const App: React.FC = () => {
   //       <p> {playlist.name}</p>
   //   )
   // }) 
-  // var songData = songs.map((song, id) => {
-  //   return(
-  //     <p>Song Title: {song.song_title} Tempo: {song.tempo}</p>
-  //   )
-  // })
- 
+  
     
   
   return (
