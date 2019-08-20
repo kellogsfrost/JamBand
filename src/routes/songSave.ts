@@ -1,21 +1,22 @@
 import express from 'express';
 const router = express.Router();
-const Song = require('../models/Song');
+import Song, {ISong} from '../models/song';
+
 
 
 //GET - all songs-working
-router.get('/', (req, res) => {
+router.get('/song', (req, res) => {
     // console.log("hello?");
-    Song.find({}, function(err, songs) {
+    Song.find({}, function(err, songs: ISong) {
        if (err) res.json(err)
        res.json(songs)
     })
  })
- //GET - get/show one song-working
- router.get('/:sid', (req, res) => {
-    console.log("Getting job data for", req.params.sid)
+ //GET - get/show one song
+ router.get('/song/:id', (req, res) => {
+    console.log("Getting job data for", req.params.id)
     // console.log(req.user._id);
-    Song.findById(req.params.sid).populate('User').exec(function (err, song) {
+    Song.findById(req.params.id).populate('User').exec(function (err, song: ISong) {
        if (err) res.json(err)
        console.log(song)
        console.log(err)
@@ -23,37 +24,24 @@ router.get('/', (req, res) => {
     })
  })
  //POST - create a song--working
- router.post('/', (req, res) => {
+ router.post('/song', (req, res) => {
     console.log("Backend post route")
     Song.create({
-        songName: String,
-        artist: String,
-        tempo: String,
-    }, function (err, song) {
-       res.json(song)
-    })
- })
- //PUT /songs/:id -- update a song
- router.put('/:sid', (req, res) => {
-    Song.findByIdAndUpdate(
-       req.params.sid,
-       {
-          $set: {
-            songName: String,
-            artist: String,
-            tempo: Number,
-          }
-       },
-       { new: true },
-       function (err, song) {
-          if (err) res.json(err)
-          res.json(song)
-       })
+        name: req.body.name,
+        artist: req.body.artist,
+        tempo: req.body.tempo,
+      }),(err, songs: ISong) => {
+         songs.save(function (err, song) {
+            if (err) console.log(err)
+            res.json(song)
+         })
+      } 
+   res.send("AYE")
  })
 
 //DELETE -delete one song
-router.delete("/:sid", (req, res) => {
-    Song.findByIdAndRemove(req.params.sid, function (err) {
+router.delete("/song/:id", (req, res) => {
+    Song.findByIdAndRemove(req.params.id, function (err) {
        if (err) res.json(err)
        res.json({ message: "DELETED!!" })
     })

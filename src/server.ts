@@ -42,6 +42,9 @@ app.use('/auth', authRouter);
 import songRouter from './routes/songSave';
 app.use('/songSave', songRouter);
 
+import playlistRouter from './routes/playlistSave';
+app.use('/playlistSave', playlistRouter);
+
 import apiRouter from './routes/api';
 app.use('/api', apiRouter);
 

@@ -3,23 +3,31 @@ import './App.css';
 import openNewAuthWindow from './openWindow';
 import axios from 'axios';
 
+
+
 // We had to defin this because TS needs to know 
 // the shape of our user object
 export interface IUser {
-  _id?: string;
+  _id: string;
   spotifyId: number;
   playlist: string;
-  song: string;
+  song: Array<string>;
 }
 
 export interface IPlaylist {
-  name: string
+  _id: string;
+  playlistId: string;
+  name: string;
 }
 
-export interface ISong{
-  track: String;
-  artist: String;
+export interface ISong {
+  _id: string;
+  songName: string;
+  artist: string;
+  tempo: number;
 }
+
+  
 
 // A functional component must be of type React.FC
 const App: React.FC = () => {
@@ -27,7 +35,6 @@ const App: React.FC = () => {
   const [user, setUser] = useState<IUser>({} as IUser)
   const [playlists, setPlaylist] = useState<IPlaylist[]>([])
   const [songs, setSong] = useState<ISong>({} as ISong)
-
   useEffect(() => {
     console.log('firing data fetch')
     if (Object.keys(user).length) {
@@ -42,7 +49,7 @@ const App: React.FC = () => {
     console.log('Grabbing songs')
       axios.get(`/bpm/song`)
       .then((res) => {
-        setSong(res.data)
+        setSong(res.data.tempo)
       })
   }, [])
   
@@ -62,7 +69,8 @@ const App: React.FC = () => {
         <p> {playlist.name}</p>
     )
   }) 
-  var songData = Object.keys(songs).length === 0 ? <p>No song</p> : <p> {songs.track}</p>
+  
+ 
     
   
   return (
@@ -70,7 +78,7 @@ const App: React.FC = () => {
       <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
       {userData}
       {playlistData}
-      {songData}
+      
     </div>
   );
 }

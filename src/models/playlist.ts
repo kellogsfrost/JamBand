@@ -7,14 +7,12 @@ const playlistSchema = new Schema({
     }
 })
 
-playlistSchema.set('toObject', {
-    transform: function(doc, ret, options) {
-        let returnJson = {
-            _id: ret._id,
-            playlistId: ret.id
-        }
-        return returnJson;
+
+    export interface IPlaylist extends mongoose.Document{
+        _id: string;
+        playlistId: string;
+        name: string;
     }
-})
+        
 
 export default mongoose.model('Playlist', playlistSchema);

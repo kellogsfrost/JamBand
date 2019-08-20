@@ -21,5 +21,11 @@ userSchema.set('toObject', {
         return returnJson;
     }
 })
+export interface IUser extends mongoose.Document {
+    _id: string;
+    spotifyId: number;
+    playlist: string;
+    song: Array<string>;
+}
 
 export default mongoose.model('User', userSchema);

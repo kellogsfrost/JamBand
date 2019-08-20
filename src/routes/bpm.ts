@@ -12,8 +12,8 @@ router.get('/song', (req, res) => {
         console.log("second part of song route!")
         // console.log(response.data)
         // JSON.stringify(response.data);
-        console.log(response.data);
-        res.json(response.data.items);
+        console.log(response.data.tempo);
+        res.json(response.data.tempo);
     }).catch((err) => {
         console.log(err);
     }) 
