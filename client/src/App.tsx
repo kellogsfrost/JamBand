@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import openNewAuthWindow from './openWindow';
 import axios from 'axios';
+import { number } from 'prop-types';
 
 
 
@@ -32,9 +33,11 @@ export interface ISong {
 // A functional component must be of type React.FC
 const App: React.FC = () => {
   // useState can be used as a generic 
+  const [bpm, setBpm] = useState<number>(130)
   const [user, setUser] = useState<IUser>({} as IUser)
   const [playlists, setPlaylist] = useState<IPlaylist[]>([])
   const [songs, setSong] = useState<ISong>({} as ISong)
+ 
   useEffect(() => {
     console.log('firing data fetch')
     if (Object.keys(user).length) {
@@ -46,12 +49,17 @@ const App: React.FC = () => {
   }, [user])
 
   useEffect(() => {
-    console.log('Grabbing songs')
-      axios.get(`/bpm/song`)
+    console.log('firing data fetch')
+    if (Object.keys(user).length) {
+      axios.get(`/bpm/song/${bpm}`)
       .then((res) => {
-        setSong(res.data.tempo)
+        console.log('hit this part')
+        console.log(res.data)
+        
       })
-  }, [])
+    }
+  }, [bpm])
+
   
   function handleLogin(e: React.MouseEvent): void {
     e.preventDefault()
@@ -78,7 +86,6 @@ const App: React.FC = () => {
       <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
       {userData}
       {playlistData}
-      
     </div>
   );
 }

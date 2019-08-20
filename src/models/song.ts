@@ -1,11 +1,9 @@
 import mongoose, {Schema} from 'mongoose'
 
 const songSchema = new Schema({
-    song: {
         name: String,
         tempo: Number,
         artist: String
-    }
 })
 
 

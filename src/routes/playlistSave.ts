@@ -1,21 +1,22 @@
 import express from 'express';
 const router = express.Router();
-const Playlist = require('../models/playlist');
+import Playlist, {IPlaylist} from '../models/playlist';
+
 
 
 //GET - all playlists-working
-router.get('/', (req, res) => {
+router.get('/playlist', (req, res) => {
     // console.log("hello?");
-    Playlist.find({}, function(err, playlists) {
+    Playlist.find({}, function(err, playlists: IPlaylist) {
        if (err) res.json(err)
        res.json(playlists)
     })
  })
- //GET - get/show one playlist-working
- router.get('/:pid', (req, res) => {
-    console.log("Getting job data for", req.params.sid)
+ //GET - get/show one playlist
+ router.get('/playlist/:id', (req, res) => {
+    console.log("Getting job data for", req.params.id)
     // console.log(req.user._id);
-    Playlist.findById(req.params.pid).populate('Playlist').exec(function (err, playlist) {
+    Playlist.findById(req.params.id).populate('User').exec(function (err, playlist: IPlaylist) {
        if (err) res.json(err)
        console.log(playlist)
        console.log(err)
@@ -23,17 +24,22 @@ router.get('/', (req, res) => {
     })
  })
  //POST - create a playlist--working
- router.post('/', (req, res) => {
+ router.post('/playlist', (req, res) => {
     console.log("Backend post route")
     Playlist.create({
-        playlistId: String
-    }, function (err, playlist) {
-       res.json(playlist)
-    })
+      playlistId: req.body.playlistId,
+      name: req.body.name
+      },(err, playlists: IPlaylist) => {
+         playlists.save(function (err, playlist) {
+            if (err) console.log(err)
+            res.json(playlist)
+         })
+      })
  })
+
 //DELETE -delete one playlist
-router.delete("/:pid", (req, res) => {
-    Playlist.findByIdAndRemove(req.params.sid, function (err) {
+router.delete("/playlist/:id", (req, res) => {
+    Playlist.findByIdAndRemove(req.params.id, function (err) {
        if (err) res.json(err)
        res.json({ message: "DELETED!!" })
     })

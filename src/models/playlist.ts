@@ -1,10 +1,8 @@
 import mongoose, {Schema} from 'mongoose'
 
 const playlistSchema = new Schema({
-    playlistId: {
-        type: String,
-        required: [true, 'You need to have a playlist']
-    }
+        playlistId: String,
+        name: String
 })
 
 

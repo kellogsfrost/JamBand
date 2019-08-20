@@ -40,10 +40,10 @@ import authRouter from './routes/auth';
 app.use('/auth', authRouter);
 
 import songRouter from './routes/songSave';
-app.use('/songSave', songRouter);
+app.use('/', songRouter);
 
 import playlistRouter from './routes/playlistSave';
-app.use('/playlistSave', playlistRouter);
+app.use('/', playlistRouter);
 
 import apiRouter from './routes/api';
 app.use('/api', apiRouter);

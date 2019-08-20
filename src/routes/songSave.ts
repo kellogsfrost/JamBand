@@ -25,18 +25,19 @@ router.get('/song', (req, res) => {
  })
  //POST - create a song--working
  router.post('/song', (req, res) => {
-    console.log("Backend post route")
+    console.log("Backend post route", req.body)
     Song.create({
         name: req.body.name,
         artist: req.body.artist,
         tempo: req.body.tempo,
-      }),(err, songs: ISong) => {
+      }, (err, songs: ISong) => {
+         console.log("err?",err)
          songs.save(function (err, song) {
             if (err) console.log(err)
             res.json(song)
          })
-      } 
-   res.send("AYE")
+      }) 
+   // res.send("AYE")
  })
 
 //DELETE -delete one song
