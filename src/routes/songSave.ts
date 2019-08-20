@@ -27,7 +27,7 @@ router.get('/song', (req, res) => {
  router.post('/song', (req, res) => {
     console.log("Backend post route", req.body)
     Song.create({
-        name: req.body.name,
+        song_title: req.body.song_title,
         artist: req.body.artist,
         tempo: req.body.tempo,
       }, (err, songs: ISong) => {

@@ -1,7 +1,7 @@
 import mongoose, {Schema} from 'mongoose'
 
 const songSchema = new Schema({
-        name: String,
+        song_title: String,
         tempo: Number,
         artist: String
 })
@@ -9,7 +9,7 @@ const songSchema = new Schema({
 
     export interface ISong extends mongoose.Document{
             _id: string;
-            name: string;
+            song_title: string;
             artist: string;
             tempo: number;
     }

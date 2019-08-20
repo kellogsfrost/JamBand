@@ -3,6 +3,7 @@ import './App.css';
 import openNewAuthWindow from './openWindow';
 import axios from 'axios';
 import { number } from 'prop-types';
+import SongList from './songList';
 
 
 
@@ -23,20 +24,28 @@ export interface IPlaylist {
 
 export interface ISong {
   _id: string;
-  songName: string;
+  song_title: string;
+  artist: string;
+  tempo: number;
+  
+}
+
+export interface IFavorite{
+  _id: string;
+  song_title: string;
   artist: string;
   tempo: number;
 }
-
   
 
 // A functional component must be of type React.FC
 const App: React.FC = () => {
   // useState can be used as a generic 
-  const [bpm, setBpm] = useState<number>(130)
+  // const [bpm, setBpm] = useState<number>(130)
   const [user, setUser] = useState<IUser>({} as IUser)
   const [playlists, setPlaylist] = useState<IPlaylist[]>([])
-  const [songs, setSong] = useState<ISong>({} as ISong)
+  const [favorites, setFavorite] = useState<IFavorite[]>([])
+  // const [songs, setSong] = useState<ISong[]>([])
  
   useEffect(() => {
     console.log('firing data fetch')
@@ -48,17 +57,15 @@ const App: React.FC = () => {
     }
   }, [user])
 
-  useEffect(() => {
-    console.log('firing data fetch')
-    if (Object.keys(user).length) {
-      axios.get(`/bpm/song/${bpm}`)
-      .then((res) => {
-        console.log('hit this part')
-        console.log(res.data)
-        
-      })
-    }
-  }, [bpm])
+  // useEffect(() => {
+  //   console.log('firing data fetch')
+  //     axios.get(`/bpm/song/${bpm}`)
+  //     .then((res) => {
+  //       console.log('hit this part')
+  //       console.log(res.data)
+  //       setSong(res.data)
+  //     })
+  // }, [bpm])
 
   
   function handleLogin(e: React.MouseEvent): void {
@@ -72,12 +79,16 @@ const App: React.FC = () => {
   }
   
   var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p> {user.spotifyId}</p>
-  var playlistData = playlists.map((playlist, id) => {
-    return (
-        <p> {playlist.name}</p>
-    )
-  }) 
-  
+  // var playlistData = playlists.map((playlist, id) => {
+  //   return (
+  //       <p> {playlist.name}</p>
+  //   )
+  // }) 
+  // var songData = songs.map((song, id) => {
+  //   return(
+  //     <p>Song Title: {song.song_title} Tempo: {song.tempo}</p>
+  //   )
+  // })
  
     
   
@@ -85,10 +96,10 @@ const App: React.FC = () => {
     <div className="App">
       <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
       {userData}
-      {playlistData}
+      {/* {playlistData} */}
+      <SongList/>
     </div>
   );
 }
 
 export default App;
-
