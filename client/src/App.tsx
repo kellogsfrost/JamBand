@@ -5,6 +5,8 @@ import axios from 'axios';
 import { number } from 'prop-types';
 import SongList from './songList';
 import FavoriteList from './favoriteList';
+// import router from 'react-router';
+import { Router } from 'express';
 
 
 
@@ -78,13 +80,18 @@ const App: React.FC = () => {
     
   
   return (
-    <div className="App">
-      <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
+    <>
+    <Router>
       {userData}
-      {/* {playlistData} */}
-      <SongList/>
-      <FavoriteList/>
-    </div>
+    </Router>
+    </>
+    // <div className="App">
+    //   <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
+    //   {userData}
+    //   {/* {playlistData} */}
+    //   <SongList/>
+    //   <FavoriteList/>
+    // </div>
   );
 }
 
