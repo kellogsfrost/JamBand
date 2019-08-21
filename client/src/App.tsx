@@ -70,7 +70,7 @@ const App: React.FC = () => {
     })
   }
   
-  var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p>Welcome: {user.spotifyId}</p>
+  var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p className="user">Welcome: {user.spotifyId}</p>
   // var playlistData = playlists.map((playlist, id) => {
   //   return (
   //       <p> {playlist.name}</p>
