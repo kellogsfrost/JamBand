@@ -45,7 +45,8 @@ export interface IFavorite{
     
       var favoriteData = favorites.map((favorite, id) => {
         return(
-         <div>
+            
+          <div className="">
           <p>Song Title: {favorite.song_title} Tempo: {favorite.tempo}</p>
           <button className="delete" onClick={()=> deleteSong(favorite)}>Delete Song</button>
           </div>
@@ -54,7 +55,8 @@ export interface IFavorite{
     
       
       return (
-        <div className="App">
+        <div className="favorites">
+        <h1>Your Favorite Tempos:</h1>
           {favoriteData}
         </div>
       );

@@ -57,7 +57,7 @@ export interface ISong {
     
       var songData = songs.map((song, id) => {
         return(
-         <div>
+         <div className="">
           <p>Song Title: {song.song_title} Tempo: {song.tempo}</p>
           <button className="save" onClick={()=> saveSong(song)}>Save Song</button>
           </div>
@@ -71,7 +71,10 @@ export interface ISong {
             <input type="text" name="bpm" placeholder="Search by Tempo" value={bpm} onChange={handleBpmChange}></input>
             <input type='submit' value='Search' className="btn btn-warning" />
             </form>
-          {songData}
+            <div className="songList">
+            <h1>Songs with tempo:{bpm}</h1>
+                {songData}
+            </div>
         </div>
       );
     }

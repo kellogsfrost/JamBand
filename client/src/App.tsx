@@ -6,7 +6,7 @@ import { number } from 'prop-types';
 import SongList from './songList';
 import FavoriteList from './favoriteList';
 // import router from 'react-router';
-import { Router } from 'express';
+//import { Router } from 'express';
 
 
 
@@ -70,7 +70,7 @@ const App: React.FC = () => {
     })
   }
   
-  var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p> {user.spotifyId}</p>
+  var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p>Welcome: {user.spotifyId}</p>
   // var playlistData = playlists.map((playlist, id) => {
   //   return (
   //       <p> {playlist.name}</p>
@@ -80,18 +80,12 @@ const App: React.FC = () => {
     
   
   return (
-    <>
-    <Router>
+    <div className="App">
+      <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
       {userData}
-    </Router>
-    </>
-    // <div className="App">
-    //   <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
-    //   {userData}
-    //   {/* {playlistData} */}
-    //   <SongList/>
-    //   <FavoriteList/>
-    // </div>
+      <SongList/>
+      <FavoriteList/>
+    </div>
   );
 }
 
