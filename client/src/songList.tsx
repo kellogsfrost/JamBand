@@ -66,7 +66,7 @@ export interface ISong {
     
       
       return (
-        <div className="App">
+        <div className="bpm">
             <form onSubmit={handleBpmSubmit}>
             <input type="text" name="bpm" placeholder="Search by Tempo" value={bpm} onChange={handleBpmChange}></input>
             <input type='submit' value='Search' className="btn btn-warning" />
