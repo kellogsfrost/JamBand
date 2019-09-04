@@ -9,7 +9,7 @@ passport.use(new SpotifyStrategy({
     clientID: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     //callbackURL: "http://localhost:3000/auth/spotify/callback"
-    callbackURL: "https://desolate-dusk-17452.herokuapp.com/"
+    callbackURL: "https://desolate-dusk-17452.herokuapp.com/auth/spotify/callback"
 },
 function(accessToken, refreshToken, expires_in, profile, cb) {
     User.findOne({
