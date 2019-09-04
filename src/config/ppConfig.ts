@@ -3,7 +3,6 @@ dotenv.config();
 import passport from 'passport';
 import passportSpotify from 'passport-spotify';
 const SpotifyStrategy = passportSpotify.Strategy;
-// const SpotifyStrategy = require('passport-spotify').Strategy;
 import User from '../models/user';
 
 passport.use(new SpotifyStrategy({
