@@ -57,7 +57,7 @@ export interface ISong {
     
       var songData = songs.map((song, id) => {
         return(
-         <div className="">
+         <div className="SongData">
           <p>Song Title: {song.song_title} Tempo: {song.tempo}</p>
           <button className="save" onClick={()=> saveSong(song)}>Save Song</button>
           </div>
