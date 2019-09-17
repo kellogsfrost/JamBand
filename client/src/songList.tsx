@@ -72,7 +72,7 @@ export interface ISong {
             <input type='submit' value='Search' className="btn btn-warning" />
             </form>
             <div className="songList">
-            <h1>Songs with tempo:{bpm}</h1>
+            <h1 className="Songs">Songs with tempo:{bpm}</h1>
                 {songData}
             </div>
         </div>
